@@ -115,7 +115,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "limebit.chakra-ui-recipes/react-table@0.0.1": {
+    "limebit.chakra-ui-recipes/react-table@0.0.2": {
         "files": [
             {
                 "name": "editable-cell.tsx",
