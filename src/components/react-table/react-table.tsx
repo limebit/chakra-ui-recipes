@@ -190,12 +190,12 @@ export const ReactTable = <D extends {}>({
           <TableIconButton
             onClick={() => gotoPage(0)}
             isDisabled={!canPreviousPage}
-            icon={() => <ChevronsLeft size={20} />}
+            icon={<ChevronsLeft size={20} />}
           />
           <TableIconButton
             isDisabled={!canPreviousPage}
             onClick={() => previousPage()}
-            icon={() => <ChevronLeft size={20} />}
+            icon={<ChevronLeft size={20} />}
           />
         </Flex>
         <Flex justifyContent="center" alignItems="center">
@@ -224,12 +224,12 @@ export const ReactTable = <D extends {}>({
           <TableIconButton
             isDisabled={!canNextPage}
             onClick={() => nextPage()}
-            icon={() => <ChevronRight size={20} />}
+            icon={<ChevronRight size={20} />}
           />
           <TableIconButton
             onClick={() => gotoPage(pageCount ? pageCount - 1 : 1)}
             isDisabled={!canNextPage}
-            icon={() => <ChevronsRight size={20} />}
+            icon={<ChevronsRight size={20} />}
           />
         </Flex>
       </Flex>
