@@ -22,6 +22,7 @@ const App: React.FC = ({ children }) => {
             { key: "test9", label: "test9" },
             { key: "test10", label: "test10" },
           ]}
+          onSelect={(element) => console.log(element)}
         />
         <SelectInput
           width="500px"

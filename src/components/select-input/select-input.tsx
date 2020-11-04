@@ -20,17 +20,20 @@ export interface SelectInputProps {
   placeholder: string;
   rawData: DataProps[];
   first?: number;
+  onSelect?: (element: DataProps) => void;
 }
 
 export const SelectInput = ({
   width,
   placeholder,
   rawData,
+  onSelect,
   first = 50,
 }: SelectInputProps): JSX.Element => {
   const [focusedInput, setFocusedInput] = useState(false);
   const [focusedButton, setFocusedButton] = useState(false);
   const [input, setInput] = useState("");
+  const [selected, setSelected] = useState(false);
 
   return (
     <Flex>
@@ -38,11 +41,17 @@ export const SelectInput = ({
         <InputGroup
           width={width}
           onFocus={() => setFocusedInput(true)}
-          onBlur={() => setTimeout(() => setFocusedInput(false), 150)}
+          onBlur={() => {
+            if (!selected) setInput("");
+            setTimeout(() => setFocusedInput(false), 150);
+          }}
         >
           <Input
             placeholder={placeholder}
-            onChange={(e) => setInput(e.target.value)}
+            onChange={(e) => {
+              setInput(e.target.value);
+              setSelected(false);
+            }}
             value={input}
           />
           <InputRightElement children={<ChevronDownIcon />} />
@@ -77,6 +86,8 @@ export const SelectInput = ({
                     setFocusedButton(false);
                     setFocusedInput(false);
                     setInput(element.label);
+                    setSelected(true);
+                    if (onSelect) onSelect(element);
                   }}
                   key={element.key}
                 >
