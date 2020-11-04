@@ -147,7 +147,7 @@
         "origin": "AUTHORED",
         "exported": true
     },
-    "limebit.chakra-ui-recipes/select-input@0.0.1": {
+    "limebit.chakra-ui-recipes/select-input@0.0.2": {
         "files": [
             {
                 "relativePath": "src/components/select-input/select-input.tsx",
