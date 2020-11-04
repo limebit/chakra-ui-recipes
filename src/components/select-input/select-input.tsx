@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import {
   Input,
   Box,
-  Flex,
   Button,
   Text,
   InputGroup,
   InputRightElement,
   ResponsiveValue,
+  Stack,
 } from "@chakra-ui/core";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import * as CSS from "csstype";
@@ -53,14 +53,14 @@ export const SelectInput = ({
   }, [initialValue]);
 
   return (
-    <Flex>
+    <Stack>
       <Box position="relative">
         <InputGroup
           width={width}
           onFocus={() => setFocusedInput(true)}
           onBlur={() => {
             if (!selected) setInput("");
-            setTimeout(() => setFocusedInput(false), 150);
+            setTimeout(() => setFocusedInput(false), 300);
           }}
         >
           <Input
@@ -117,7 +117,7 @@ export const SelectInput = ({
           </Box>
         ) : null}
       </Box>
-    </Flex>
+    </Stack>
   );
 };
 
