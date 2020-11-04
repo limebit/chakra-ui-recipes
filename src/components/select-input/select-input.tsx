@@ -7,7 +7,6 @@ import {
   InputGroup,
   InputRightElement,
   ResponsiveValue,
-  Stack,
 } from "@chakra-ui/core";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import * as CSS from "csstype";
@@ -53,71 +52,72 @@ export const SelectInput = ({
   }, [initialValue]);
 
   return (
-    <Stack>
-      <Box position="relative">
-        <InputGroup
-          width={width}
-          onFocus={() => setFocusedInput(true)}
-          onBlur={() => {
+    <Box position="relative" display="inline-block" width={width}>
+      <InputGroup
+        onFocus={() => setFocusedInput(true)}
+        onBlur={() => {
+          setTimeout(() => {
             if (!selected) setInput("");
-            setTimeout(() => setFocusedInput(false), 300);
+            setFocusedInput(false);
+          }, 150);
+        }}
+      >
+        <Input
+          placeholder={placeholder}
+          onChange={(e) => {
+            setInput(e.target.value);
+            setSelected(undefined);
           }}
+          value={selected ? selected.label : input}
+          backgroundColor={inputColor}
+        />
+        <InputRightElement children={<ChevronDownIcon />} />
+      </InputGroup>
+      {focusedInput || focusedButton ? (
+        <Box
+          position="absolute"
+          width="100%"
+          maxHeight="200px"
+          overflowY="auto"
+          marginTop="6px"
+          shadow="sm"
+          rounded="4px"
+          backgroundColor={boxColor}
+          zIndex="20"
+          onFocus={() => setFocusedButton(true)}
+          onBlur={() => setFocusedButton(false)}
+          _focus={{ outline: "None" }}
         >
-          <Input
-            placeholder={placeholder}
-            onChange={(e) => {
-              setInput(e.target.value);
-              setSelected(undefined);
-            }}
-            value={input}
-            backgroundColor={inputColor}
-          />
-          <InputRightElement children={<ChevronDownIcon />} />
-        </InputGroup>
-        {focusedInput || focusedButton ? (
-          <Box
-            position="absolute"
-            width="100%"
-            maxHeight="200px"
-            overflowY="auto"
-            marginTop="6px"
-            shadow="sm"
-            rounded="4px"
-            backgroundColor={boxColor}
-            zIndex="20"
-            onFocus={() => setFocusedButton(true)}
-            onBlur={() => setFocusedButton(false)}
-            _focus={{ outline: "None" }}
-          >
-            {rawData
-              .filter((element) => element.label.includes(input))
-              .slice(0, first)
-              .map((element) => (
-                <Button
-                  variant="ghost"
-                  width="100%"
-                  textAlign="left"
-                  borderRadius="0"
-                  _hover={{ backgroundColor: boxHoverColor }}
-                  onClick={() => {
-                    console.log(element.key);
-                    setFocusedButton(false);
-                    setFocusedInput(false);
-                    setInput(element.label);
-                    setSelected(element);
-                    if (onSelect) onSelect(element);
-                  }}
-                  key={element.key}
-                >
-                  <Text paddingLeft="10px" width="100%" fontWeight="normal">
-                    {element.label}
-                  </Text>
-                </Button>
-              ))}
-          </Box>
-        ) : null}
-      </Box>
-    </Stack>
+          {rawData
+            .filter((element) =>
+              element.label.toLowerCase().includes(input.toLowerCase())
+            )
+            .slice(0, first)
+            .map((element) => (
+              <Button
+                variant="ghost"
+                width="100%"
+                textAlign="left"
+                borderRadius="0"
+                _hover={{ backgroundColor: boxHoverColor }}
+                onClick={() => {
+                  console.log(element.key);
+                  setInput(element.label);
+                  setSelected(element);
+                  setFocusedButton(false);
+                  setFocusedInput(false);
+                  if (onSelect) onSelect(element);
+                }}
+                key={element.key}
+              >
+                <Text paddingLeft="10px" width="100%" fontWeight="normal">
+                  {element.label}
+                </Text>
+              </Button>
+            ))}
+        </Box>
+      ) : null}
+    </Box>
   );
 };
 
