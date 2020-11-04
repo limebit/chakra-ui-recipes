@@ -25,6 +25,8 @@ const App: React.FC = ({ children }) => {
           onSelect={(element) => console.log(element)}
         />
         <SelectInput
+          boxHoverColor="gray.200"
+          boxColor="gray.100"
           width="500px"
           placeholder="Nach Politiker Suchen"
           rawData={[

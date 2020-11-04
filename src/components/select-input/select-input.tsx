@@ -7,8 +7,10 @@ import {
   Text,
   InputGroup,
   InputRightElement,
+  ResponsiveValue,
 } from "@chakra-ui/core";
 import { ChevronDownIcon } from "@chakra-ui/icons";
+import * as CSS from "csstype";
 
 export interface DataProps {
   label: string;
@@ -21,6 +23,9 @@ export interface SelectInputProps {
   rawData: DataProps[];
   first?: number;
   onSelect?: (element: DataProps) => void;
+  boxColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  boxHoverColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  inputColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
 }
 
 export const SelectInput = ({
@@ -28,6 +33,9 @@ export const SelectInput = ({
   placeholder,
   rawData,
   onSelect,
+  boxColor,
+  boxHoverColor,
+  inputColor,
   first = 50,
 }: SelectInputProps): JSX.Element => {
   const [focusedInput, setFocusedInput] = useState(false);
@@ -53,6 +61,7 @@ export const SelectInput = ({
               setSelected(false);
             }}
             value={input}
+            backgroundColor={inputColor}
           />
           <InputRightElement children={<ChevronDownIcon />} />
         </InputGroup>
@@ -65,8 +74,8 @@ export const SelectInput = ({
             marginTop="6px"
             shadow="sm"
             rounded="4px"
-            backgroundColor="gray.100"
-            zIndex="1000"
+            backgroundColor={boxColor}
+            zIndex="20"
             onFocus={() => setFocusedButton(true)}
             onBlur={() => setFocusedButton(false)}
             _focus={{ outline: "None" }}
@@ -80,7 +89,7 @@ export const SelectInput = ({
                   width="100%"
                   textAlign="left"
                   borderRadius="0"
-                  _hover={{ backgroundColor: "gray.200" }}
+                  _hover={{ backgroundColor: boxHoverColor }}
                   onClick={() => {
                     console.log(element.key);
                     setFocusedButton(false);
