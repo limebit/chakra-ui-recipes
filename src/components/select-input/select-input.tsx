@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Input,
   Box,
@@ -18,14 +18,15 @@ export interface DataProps {
 }
 
 export interface SelectInputProps {
-  width: string;
   placeholder: string;
   rawData: DataProps[];
+  width?: string;
   first?: number;
   onSelect?: (element: DataProps) => void;
   boxColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
   boxHoverColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
   inputColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  initialValue?: DataProps;
 }
 
 export const SelectInput = ({
@@ -36,12 +37,20 @@ export const SelectInput = ({
   boxColor,
   boxHoverColor,
   inputColor,
+  initialValue,
   first = 50,
 }: SelectInputProps): JSX.Element => {
   const [focusedInput, setFocusedInput] = useState(false);
   const [focusedButton, setFocusedButton] = useState(false);
+  const [selected, setSelected] = useState<DataProps>();
   const [input, setInput] = useState("");
-  const [selected, setSelected] = useState(false);
+
+  useEffect(() => {
+    if (initialValue) {
+      setInput(initialValue.label);
+      setSelected(initialValue);
+    }
+  }, [initialValue]);
 
   return (
     <Flex>
@@ -58,7 +67,7 @@ export const SelectInput = ({
             placeholder={placeholder}
             onChange={(e) => {
               setInput(e.target.value);
-              setSelected(false);
+              setSelected(undefined);
             }}
             value={input}
             backgroundColor={inputColor}
@@ -81,8 +90,8 @@ export const SelectInput = ({
             _focus={{ outline: "None" }}
           >
             {rawData
-              .slice(0, first)
               .filter((element) => element.label.includes(input))
+              .slice(0, first)
               .map((element) => (
                 <Button
                   variant="ghost"
@@ -95,7 +104,7 @@ export const SelectInput = ({
                     setFocusedButton(false);
                     setFocusedInput(false);
                     setInput(element.label);
-                    setSelected(true);
+                    setSelected(element);
                     if (onSelect) onSelect(element);
                   }}
                   key={element.key}
