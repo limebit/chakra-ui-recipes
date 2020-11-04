@@ -11,6 +11,8 @@ const App: React.FC = ({ children }) => {
           boxHoverColor="gray.200"
           boxColor="gray.100"
           width="500px"
+          iconHoverColor="gray.200"
+          iconColor="gray.500"
           placeholder="test"
           rawData={[
             { key: "test1", label: "test1" },
