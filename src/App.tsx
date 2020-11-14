@@ -9,7 +9,7 @@ const App: React.FC = ({ children }) => {
       <Stack marginLeft="10px" marginTop="10px">
         <SelectInput
           boxHoverColor="gray.200"
-          boxColor="gray.100"
+          BoxProps={{ background: "gray.100" }}
           width="500px"
           iconHoverColor="gray.200"
           iconColor="gray.500"
@@ -31,7 +31,7 @@ const App: React.FC = ({ children }) => {
         />
         <SelectInput
           boxHoverColor="gray.200"
-          boxColor="gray.100"
+          BoxProps={{ background: "gray.100" }}
           width="500px"
           placeholder="Nach Politiker Suchen"
           rawData={[
@@ -49,7 +49,9 @@ const App: React.FC = ({ children }) => {
         />
         <SelectInput
           boxHoverColor="gray.200"
-          boxColor="gray.100"
+          BoxProps={{ background: "gray.100" }}
+          ButtonProps={{ _hover: { background: "gray.200" } }}
+          TextProps={{ fontFamily: "serif" }}
           width="500px"
           placeholder="Nach Politiker Suchen"
           rawData={[

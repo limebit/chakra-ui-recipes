@@ -7,6 +7,10 @@ import {
   InputGroup,
   InputRightElement,
   ResponsiveValue,
+  BoxProps,
+  InputProps,
+  ButtonProps,
+  TextProps,
 } from "@chakra-ui/core";
 import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import * as CSS from "csstype";
@@ -22,11 +26,13 @@ export interface SelectInputProps {
   width?: string;
   first?: number;
   onSelect?: (element: DataProps | undefined) => void;
-  boxColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
-  boxHoverColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
-  inputColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  BoxProps?: BoxProps;
+  InputProps?: InputProps;
+  ButtonProps?: ButtonProps;
+  TextProps?: TextProps;
   iconColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
   iconHoverColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  boxHoverColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
   initialValue?: DataProps;
 }
 
@@ -35,11 +41,13 @@ export const SelectInput = ({
   placeholder,
   rawData,
   onSelect,
-  boxColor,
-  boxHoverColor,
-  inputColor,
+  BoxProps,
+  ButtonProps,
+  InputProps,
+  TextProps,
   iconColor,
   iconHoverColor,
+  boxHoverColor,
   initialValue,
   first = 50,
 }: SelectInputProps): JSX.Element => {
@@ -67,13 +75,14 @@ export const SelectInput = ({
         }}
       >
         <Input
+          {...InputProps}
           placeholder={placeholder}
           onChange={(e) => {
             setInput(e.target.value);
             setSelected(undefined);
           }}
           value={selected ? selected.label : input}
-          backgroundColor={inputColor}
+          width="100%"
         />
         <InputRightElement
           children={
@@ -99,6 +108,7 @@ export const SelectInput = ({
       </InputGroup>
       {focusedInput || focusedButton ? (
         <Box
+          {...BoxProps}
           position="absolute"
           width="100%"
           maxHeight="200px"
@@ -106,7 +116,6 @@ export const SelectInput = ({
           marginTop="6px"
           shadow="sm"
           rounded="4px"
-          backgroundColor={boxColor}
           zIndex="20"
           onFocus={() => setFocusedButton(true)}
           onBlur={() => setFocusedButton(false)}
@@ -119,13 +128,12 @@ export const SelectInput = ({
             .slice(0, first)
             .map((element) => (
               <Button
+                _hover={{ backgroundColor: boxHoverColor }}
+                {...ButtonProps}
                 variant="ghost"
                 width="100%"
                 textAlign="left"
-                borderRadius="0"
-                _hover={{ backgroundColor: boxHoverColor }}
                 onClick={() => {
-                  console.log(element.key);
                   setInput(element.label);
                   setSelected(element);
                   setFocusedButton(false);
@@ -134,7 +142,12 @@ export const SelectInput = ({
                 }}
                 key={element.key}
               >
-                <Text paddingLeft="10px" width="100%" fontWeight="normal">
+                <Text
+                  fontWeight="normal"
+                  {...TextProps}
+                  paddingLeft="10px"
+                  width="100%"
+                >
                   {element.label}
                 </Text>
               </Button>
