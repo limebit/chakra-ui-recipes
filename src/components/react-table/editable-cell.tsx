@@ -1,4 +1,4 @@
-import { Text, Input, ButtonGroup, IconButton } from "@chakra-ui/core";
+import { Text, Input, ButtonGroup, IconButton } from "@chakra-ui/react";
 import { CheckIcon, CloseIcon } from "@chakra-ui/icons";
 import React from "react";
 import { UpdateDataProps } from "./use-inline-edit";

@@ -3,7 +3,7 @@
 
 // @TODO: [AD-272] ts compile do not ignore ReactTable
 // @ts-nocheck
-import { Flex, Text } from "@chakra-ui/core";
+import { Flex, Text } from "@chakra-ui/react";
 import React from "react";
 import {
   ChevronDown,

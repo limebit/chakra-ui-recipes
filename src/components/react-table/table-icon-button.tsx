@@ -1,5 +1,5 @@
 import React from "react";
-import { IconButton } from "@chakra-ui/core";
+import { IconButton } from "@chakra-ui/react";
 type TableIconButtonProps = {
   icon: any;
   onClick:

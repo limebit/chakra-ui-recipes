@@ -1,5 +1,5 @@
 import React from "react";
-import { BoxProps, Box } from "@chakra-ui/core";
+import { BoxProps, Box } from "@chakra-ui/react";
 
 export const Table: React.FC<BoxProps> = ({ children, ...rest }) => {
   return (
