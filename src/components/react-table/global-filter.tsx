@@ -1,6 +1,6 @@
 import React from "react";
 import { Row } from "react-table";
-import { Input, InputGroup, InputLeftElement } from "@chakra-ui/core";
+import { Input, InputGroup, InputLeftElement } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 
 interface GlobalFilterProps {

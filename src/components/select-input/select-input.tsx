@@ -11,7 +11,7 @@ import {
   InputProps,
   ButtonProps,
   TextProps,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { SearchIcon, CloseIcon } from "@chakra-ui/icons";
 import * as CSS from "csstype";
 

@@ -1,4 +1,4 @@
-import { Link, Button } from "@chakra-ui/core";
+import { Link, Button } from "@chakra-ui/react";
 import React from "react";
 
 interface ButtonLinkProps {

@@ -10,7 +10,7 @@ import {
   ModalBody,
   ModalFooter,
   Text,
-} from "@chakra-ui/core";
+} from "@chakra-ui/react";
 import { DeleteIcon } from "@chakra-ui/icons";
 import React from "react";
 
@@ -40,10 +40,7 @@ export const DeleteModal = ({
       />
 
       <Modal isOpen={isOpen} onClose={onClose}>
-        <ModalOverlay
-          zIndex={1500}
-          data-testid="modal-over-lay"
-        >
+        <ModalOverlay zIndex={1500} data-testid="modal-over-lay">
           <ModalContent data-testid="delete-modal-popup">
             <ModalHeader>Delete</ModalHeader>
             <ModalCloseButton data-testid="delete-modal-x-button" />
