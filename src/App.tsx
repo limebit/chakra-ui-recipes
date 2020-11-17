@@ -70,7 +70,8 @@ const MYComponent = () => {
       pageSize={10}
       colors={{
         tableHeadColor: "gray.200",
-        evenOddColor: "gray.100",
+        oddColor: "gray.100",
+        evenColor: "gray.100",
         // selectedColor: "gray.600",
       }}
       // selectedId={"3"}

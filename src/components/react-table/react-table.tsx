@@ -33,7 +33,8 @@ import * as CSS from "csstype";
 interface ColorObject {
   tableHeadColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
   selectedColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
-  evenOddColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  evenColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  oddColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
 }
 
 type ReactTableProps<D extends object = {}> = {
@@ -167,11 +168,9 @@ export const ReactTable = <D extends {}>({
                   bg={
                     row.id === selectedId
                       ? colors?.selectedColor || "gray.200"
-                      : colors?.evenOddColor
-                      ? index % 2 === 0
-                        ? colors?.evenOddColor
-                        : undefined
-                      : undefined
+                      : index % 2 === 0
+                      ? colors?.oddColor || undefined
+                      : colors?.evenColor || undefined
                   }
                   onClick={() => onRowClick && onRowClick(row)}
                   flexDirection="row"
