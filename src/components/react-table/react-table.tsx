@@ -29,6 +29,12 @@ import { GlobalFilter } from "./global-filter";
 import { UpdateDataProps } from "./use-inline-edit";
 import { EditableCell } from "./editable-cell";
 
+interface ColorObject {
+  tableHeadColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  selectedColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+  evenOddColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
+}
+
 type ReactTableProps<D extends object = {}> = {
   data: any;
   columns: Column<D>[];
@@ -42,6 +48,7 @@ type ReactTableProps<D extends object = {}> = {
     skipPageReset: boolean;
   };
   searchBarColSpan?: number;
+  colors?: ColorObject;
 };
 
 export const ReactTable = <D extends {}>({
@@ -54,6 +61,7 @@ export const ReactTable = <D extends {}>({
   enableSearch,
   inLineEditConfig,
   searchBarColSpan,
+  colors,
 }: ReactTableProps<D>) => {
   const tableColumns = React.useMemo(() => columns, [columns]);
 
@@ -108,7 +116,7 @@ export const ReactTable = <D extends {}>({
               {headerGroup.headers.map((column) => (
                 <Th
                   p={4}
-                  bg="gray.100"
+                  bg={colors?.tableHeadColor || "gray.100"}
                   {...column.getHeaderProps()}
                   {...column.getSortByToggleProps()}
                 >
@@ -150,12 +158,20 @@ export const ReactTable = <D extends {}>({
         </Thead>
         <Tbody flexDirection="column">
           {page.map(
-            (row) =>
+            (row, index) =>
               // @ts-ignore
               prepareRow(row) || (
                 <Tr
                   style={onRowClick && { cursor: "pointer" }}
-                  bg={row.id === selectedId ? "gray.100" : undefined}
+                  bg={
+                    row.id === selectedId
+                      ? colors?.selectedColor || "gray.200"
+                      : colors?.evenOddColor
+                      ? index % 2 === 0
+                        ? colors?.evenOddColor
+                        : undefined
+                      : undefined
+                  }
                   onClick={() => onRowClick && onRowClick(row)}
                   flexDirection="row"
                   {...row.getRowProps()}
