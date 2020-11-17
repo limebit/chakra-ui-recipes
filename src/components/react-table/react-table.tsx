@@ -3,7 +3,7 @@
 
 // @TODO: [AD-272] ts compile do not ignore ReactTable
 // @ts-nocheck
-import { Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, ResponsiveValue } from "@chakra-ui/react";
 import React from "react";
 import {
   ChevronDown,
@@ -28,6 +28,7 @@ import { TableIconButton } from "./table-icon-button";
 import { GlobalFilter } from "./global-filter";
 import { UpdateDataProps } from "./use-inline-edit";
 import { EditableCell } from "./editable-cell";
+import * as CSS from "csstype";
 
 interface ColorObject {
   tableHeadColor?: ResponsiveValue<CSS.Property.BackgroundImage>;
