@@ -1603,15 +1603,6 @@
     "@chakra-ui/form-control" "1.1.0"
     "@chakra-ui/utils" "1.0.2"
 
-"@chakra-ui/theme-tools@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-1.0.1.tgz#f13e009c2b9d2e1b990854d910867cded04ed072"
-  integrity sha512-bBcaf0Zi2NNRFCs4QLL4XWIUSI1n5wMuBL6q9dAOkdrU/J9OCX0Xub86VVeQgrYYmUOMpNbaaIb1QNMCXNiJHw==
-  dependencies:
-    "@chakra-ui/utils" "1.0.1"
-    "@types/tinycolor2" "1.4.2"
-    tinycolor2 "1.4.2"
-
 "@chakra-ui/theme-tools@1.0.2":
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/@chakra-ui/theme-tools/-/theme-tools-1.0.2.tgz#d4c36f3f4e60295e9f98d418182a98c76ff15393"
@@ -1620,13 +1611,6 @@
     "@chakra-ui/utils" "1.0.2"
     "@types/tinycolor2" "1.4.2"
     tinycolor2 "1.4.2"
-
-"@chakra-ui/theme@1.1.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/theme/-/theme-1.1.0.tgz#c279cd3c252b448a0e6a191975c8200921a56cd0"
-  integrity sha512-Za/2uNM+3SugRlEhyYK01d6sy96TrkeyDXNnNZ9ENo6BiVlijQKuve2BIgS7f0ktcaA8qPci6v4uBDKR9WMPOQ==
-  dependencies:
-    "@chakra-ui/theme-tools" "1.0.1"
 
 "@chakra-ui/theme@1.3.0":
   version "1.3.0"
@@ -1667,17 +1651,6 @@
   dependencies:
     "@chakra-ui/hooks" "1.0.2"
     "@chakra-ui/utils" "1.0.2"
-
-"@chakra-ui/utils@1.0.1":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/utils/-/utils-1.0.1.tgz#b050af53ecd346163479b386d189f40c995509cf"
-  integrity sha512-ASxUtuBcZwwFTk51Lz+yt6fTbZVOWJy2kbwS+7AMXWVrZrXxMIe90zO9AMgL2oXQzHUTzBL0O+T2qK5ezAZDSw==
-  dependencies:
-    "@types/lodash.mergewith" "4.6.6"
-    "@types/object-assign" "4.0.30"
-    css-box-model "1.2.1"
-    lodash.mergewith "4.6.2"
-    object-assign "4.1.1"
 
 "@chakra-ui/utils@1.0.2":
   version "1.0.2"
