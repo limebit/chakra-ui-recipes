@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Input,
   Box,
@@ -53,15 +53,10 @@ export const SelectInput = ({
 }: SelectInputProps): JSX.Element => {
   const [focusedInput, setFocusedInput] = useState(false);
   const [focusedButton, setFocusedButton] = useState(false);
-  const [selected, setSelected] = useState<DataProps>();
-  const [input, setInput] = useState("");
-
-  useEffect(() => {
-    if (initialValue) {
-      setInput(initialValue.label);
-      setSelected(initialValue);
-    }
-  }, [initialValue]);
+  const [selected, setSelected] = useState<DataProps | null>(
+    initialValue || null
+  );
+  const [input, setInput] = useState(initialValue?.label);
 
   return (
     <Box position="relative" display="inline-block" width={width}>
@@ -79,7 +74,7 @@ export const SelectInput = ({
           placeholder={placeholder}
           onChange={(e) => {
             setInput(e.target.value);
-            setSelected(undefined);
+            setSelected(null);
           }}
           value={selected ? selected.label : input}
           width="100%"
@@ -96,7 +91,7 @@ export const SelectInput = ({
                 _hover={{ backgroundColor: iconHoverColor }}
                 onClick={() => {
                   setInput("");
-                  setSelected(undefined);
+                  setSelected(null);
                   if (onSelect) onSelect(undefined);
                 }}
               />
@@ -122,8 +117,10 @@ export const SelectInput = ({
           _focus={{ outline: "None" }}
         >
           {rawData
-            .filter((element) =>
-              element.label.toLowerCase().includes(input.toLowerCase())
+            .filter(
+              (element) =>
+                input &&
+                element.label.toLowerCase().includes(input?.toLowerCase())
             )
             .slice(0, first)
             .map((element) => (
